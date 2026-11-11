@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Recetas.Api.Middleware;
 using Recetas.Application;
 using Recetas.Domain;
 using Recetas.Infrastructure;
@@ -19,6 +20,8 @@ builder.Services.AddScoped<RecetaService>();
 builder.Services.AddScoped<IRecetaRepository, RecetaRepository>();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
+
 
 if (app.Environment.IsDevelopment())
 {
